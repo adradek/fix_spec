@@ -14,10 +14,9 @@ RSpec.describe AuctionAttachmentsUnloader do
 
   def generate_attachments(array_with_file_attributes)
     array_with_file_attributes.map do |filename, type|
-      upload = fixture_file_upload("files/#{filename}")
       ActionDispatch::Http::UploadedFile.new(
-        tempfile: upload.tempfile,
-        filename: upload.original_filename,
+        tempfile: Tempfile.open("#{Rails.root}/spec/fixtures/files/#{filename}"),
+        filename: filename,
         type: type
       )
     end
