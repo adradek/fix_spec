@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe AuctionAttachmentsUnloader do
-  StubbedAttachment = Struct.new(:original_filename, :content_type)
-
   let(:auction) { create(:auction) }
 
   before do
